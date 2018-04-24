@@ -5,141 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/20 20:03:22 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/23 19:37:33 by femaury          ###   ########.fr       */
+/*   Created: 2018/04/24 13:06:20 by femaury           #+#    #+#             */
+/*   Updated: 2018/04/24 14:08:10 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#define MAX_FSIZE 548
+#include "libft/libft.h"
+#define N_DPOS(n) (n != 4 && n != 9 && n != 14 && n != 19 && n != 20)
+#define N_EPOS(n) (n == 4 || n == 9 || n == 14 || n == 19)
 
-int		ft_checkblock(char *s, int pos)
-{
-	int		blocks;
-	int		links;
-	int		rows;
-
-	blocks = 0;
-	links = 0;
-	rows = 0;
-	while (*s)
-	{
-		if (*s == '#')
-		{
-			if ((pos >= 0 && pos <= 3) || (pos >= 5 && pos <= 8) ||
-				(pos >= 10 && pos <= 13))
-			{
-				if (s[pos + 1] == '#')
-					links += 2;
-				if (s[pos + 5] == '#')
-					links += 2;
-			}
-			if (pos >= 15 && pos <= 17 && s[pos + 1] == '#')
-				links += 2;
-			if (pos == 5 || pos == 9 || pos == 14 || pos == 19 ||
-					blocks == 3)
-				return (1);
-			blocks++;
-		}
-		if (row == 3 && pos == 19)
-		{
-			row = 0;
-			pos = -1;
-		}
-		if (pos == (4 + 5 * row))
-			row++;
-		pos++;		
-	}
-}
-
-int		ft_checkchars(char *s, int row, int pos, int bcount)
-{
-	while (*s)
-	{
-		if (*s == '\n' && row != 3)
-		{
-			if (pos != (4 + 5 * row++))
-				return (1);
-		}
-		else if (row == 3 && pos == 19)
-		{
-			if (*s != '\n' || (*(s + 1) != '\n' && *(s + 1)))
-				return (3);
-			pos = -1;
-			row = 0;
-			s++;
-		}
-		pos++;
-		s++;
-	}
-	return (0);
-}
-
-int		ft_checkstr(char *s)
+int		ft_checkblocks(char *s)
 {
 	int		i;
+	int		links;
 
 	i = 0;
-	while (s[i] && i <= 545)
+	links = 0;
+	while (s[i])
 	{
-		printf("i = %d\n", i);
-		if (s[i] != '.' && s[i] != '#' && s[i] != '\n')
-			return (1);
+		if (s[i] == '#')
+		{
+			if ((i >= 0 && i <= 3) || (i >= 5 && i <= 8) || (i >= 10 && i <= 13))
+			{
+				if (s[i + 1] == '#')
+					links += 2;
+				if (s[i + 5] == '#')
+					links += 2;
+			}
+			if (i >= 15 && i <= 17 && s[i + 1] == '#')
+				links += 2;
+		}
 		i++;
 	}
-	if (i == 546)
-		return (1);
-	return (0);
+	return (links != 6 && links != 8) ? (1) : (0);
 }
 
-int		ft_checktetri(char *s)
+int		ft_checkfile(char **s)
 {
-	int		row;
-	int		pos;
-	int		bcount;
-	char	*sc;
+	int		i;
+	int		j;
+	int		blocks;
 
-	row = 0;
-	pos = 0;
-	bcount = 0;
-	sc = s;
-	if (ft_checkstr(sc))
-		return (4);
-	if (ft_checkblock(s))
-		return (5);
-	return (ft_checkchars(sc, row, pos, bcount));
-}
-
-int		ft_checkfile(char *s)
-{
-	int		fd;
-	int		rd;
-	char	*buf;
-
-	buf = (char *)ft_memalloc((size_t)MAX_FSIZE + 1);
-	if ((fd = open(s, O_RDONLY)) == -1)
-		return (1);
-	if ((rd = read(fd, buf, MAX_FSIZE)) == -1)
-		return (1);
-	buf[rd] = '\0';
-	close(fd);
-	return (ft_checktetri(buf));
-}
-
-int		main(int ac, char **av)
-{
-	int	erno;
-
-	erno = 0;
-	(void)ac;
-	if ((erno = ft_checkfile(av[1])))
-		printf("Error %d.\n", erno);
-	else
-		printf("Success!\n");
+	i = 0;
+	while (s[i][0])
+	{
+		j = 0;
+		blocks = 0;
+		while (s[i][j])
+		{
+			if (s[i][j] != '.' && s[i][j] != '#' && s[i][j] != '\n')
+				return (3);
+			if (s[i][j] == '\n' && N_DPOS(j))
+				return (3);
+			if (s[i][j] != '\n' && N_EPOS(j))
+				return (3);
+			if (s[i][j] == '#')
+				if (blocks++ == 4)
+					return (3);
+			j++;
+		}
+		if (blocks != 4 || ft_checkblocks(s[i]))
+			return (2);
+		i++;
+	}
 	return (0);
 }
