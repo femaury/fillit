@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 15:43:17 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/25 18:00:58 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/25 19:32:09 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int		main(int ac, char **av)
 	int			j;
 	int			tetris;
 	char		**res;
-	t_tetris	ttab[3];
+	t_tetris	ttab[4];
 
 	i = 0;
-	j = 4;
+	j = 2;
 	tetris = 0;
 	ttab[0].posy[0] = 0;
 	ttab[0].posy[1] = 1;
@@ -58,7 +58,7 @@ int		main(int ac, char **av)
 		ft_putnbr(tetris);
 		ft_putchar('\n');
 	}
-	if (!(res = ft_fillmap(ttab, ft_createmap(j), j, tetris)))
+	while (!(res = ft_fillmap(ttab, ft_createmap(j), j, tetris)))
 		j++;
 	ft_putchar('\n');
 	while (i < j)

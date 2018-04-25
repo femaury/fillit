@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:55:03 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/25 13:56:38 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/25 19:34:04 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # define RED "\x1B[31m"
 # define GREEN "\x1B[32m"
+# define YELLOW "\x1B[33m"
+# define BLUE "\x1B[34m"
+# define MAGENTA "\x1B[35m"
+# define CYAN "\x1B[36m"
 # define EOC "\033[0m"
 
 typedef struct	s_tetris
