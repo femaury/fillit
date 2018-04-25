@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_readfile.c                                      :+:      :+:    :+:   */
+/*   ft_createmap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/24 12:32:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/24 18:44:43 by femaury          ###   ########.fr       */
+/*   Created: 2018/04/24 18:16:19 by femaury           #+#    #+#             */
+/*   Updated: 2018/04/24 18:34:26 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "fillit.h"
 
-int		ft_readfile(char *s)
+char	**ft_createmap(size_t size)
 {
-	int		i;
-	int		fd;
-	char	**buf;
+	unsigned int	i;
+	char			**map;
 
 	i = 0;
-	if (!(buf = (char **)malloc(sizeof(char *) * 27)))
-		return (0);
-	while (i < 27)
-		if (!(buf[i++] = (char *)ft_memalloc(22)))
-			return (0);
-	if ((fd = open(s, O_RDONLY)) == -1)
-		return (0);
-	i = 0;
-	while (read(fd, buf[i], 21) > 0)
+	if (!(map = (char **)malloc(sizeof(char *) * (size + 1))))
+		return (NULL);
+	while (i < size)
+	{
+		if (!(map[i] = (char *)malloc(size + 1)))
+			return (NULL);
+		if (!ft_memset(map[i], '.', size))
+			return (NULL);
+		map[i][size] = '\0';
 		i++;
-	if (buf[25][20] || !buf[0][19])
-		return (0);
-	close(fd);
-	return (ft_checkfile(buf));
+	}
+	if (!(map[i] = (char *)ft_memalloc(1)))
+		return (NULL);
+	return (map);
 }

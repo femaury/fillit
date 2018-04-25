@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 13:06:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/24 15:32:03 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/24 18:56:29 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ int		ft_checkfile(char **s)
 		while (s[i][j])
 		{
 			if (s[i][j] != '.' && s[i][j] != '#' && s[i][j] != '\n')
-				return (3);
+				return (0);
 			if ((s[i][j] == '\n' && N_DPOS(j)) ||
 					(s[i][j] != '\n' && N_EPOS(j)))
-				return (3);
+				return (0);
 			if (s[i][j++] == '#')
 				if (blocks++ == 4)
-					return (3);
+					return (0);
 		}
 		if (blocks != 4 || ft_checkblocks(s[i]))
-			return (2);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (i);
 }

@@ -6,13 +6,13 @@
 #    By: femaury <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 20:03:09 by femaury           #+#    #+#              #
-#    Updated: 2018/04/24 15:38:30 by femaury          ###   ########.fr        #
+#    Updated: 2018/04/24 19:41:20 by femaury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 SRC_PATH = project
-SRC_NAME = ft_readfile.c ft_checkfile.c
+SRC_NAME = main.c ft_readfile.c ft_checkfile.c ft_createmap.c ft_fillmap.c
 OBJ_PATH = project
 OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
