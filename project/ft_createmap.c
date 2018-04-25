@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 18:16:19 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/24 18:34:26 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/25 15:55:39 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**ft_createmap(size_t size)
 		map[i][size] = '\0';
 		i++;
 	}
-	if (!(map[i] = (char *)ft_memalloc(1)))
+	if (!(map[size] = (char *)ft_memalloc(1)))
 		return (NULL);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:55:03 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/25 12:39:49 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/25 13:56:38 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_tetris
 }				t_tetris;
 
 char			**ft_createmap(size_t size);
-char			**ft_fillmap(t_tetris ttab[], char **map, size_t size);
+char			**ft_fillmap(t_tetris ttab[], char **map, size_t size, int nb);
 int				ft_checkfile(char **s);
 int				ft_readfile(char *s);
 #endif
