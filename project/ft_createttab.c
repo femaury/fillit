@@ -6,7 +6,7 @@
 /*   By: badhont <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:20:04 by badhont           #+#    #+#             */
-/*   Updated: 2018/04/26 18:37:24 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/26 18:52:02 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,26 @@ static t_tetris	*ft_fillttab(char **s, t_tetris *ttab, int i)
 	j = 0;
 	spot = 0;
 	while (s[i][j] && s[i][j] != '#')
-	j++;
+		j++;
 	tag = j++;
 	while (s[i][j])
 	{
-	while (s[i][j] != '#')
+		while (s[i][j] != '#')
+			j++;
+		ttab[i].posy[spot] = (j / 5) - (tag / 5);
+		ttab[i].posx[spot] = (j % 5) - (tag % 5);
+		spot++;
 		j++;
-	ttab[i].posy[spot] = (j / 5) - (tag / 5);
-	ttab[i].posx[spot] = (j % 5) - (tag % 5);
-	spot++;
-	j++;
 	}
 	return (ttab);
 }
 
-t_tetris	*ft_createttab(char **s, int nb)
+t_tetris		*ft_createttab(char **s, int nb)
 {
-	int		i;
+	int			i;
+	t_tetris	*ttab;
 
 	i = 0;
-	t_tetris    *ttab;
 	if (!(ttab = (t_tetris *)malloc(sizeof(t_tetris) * nb)))
 		return (NULL);
 	while (i < nb)

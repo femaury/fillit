@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 15:43:17 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/26 18:32:30 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/26 18:53:34 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_fillit(char *file, int tetris)
 
 	i = 0;
 	if (!(ttab = ft_createttab(ft_readfile(file), tetris)))
-			return (1);
+		return (1);
 	size = (ft_sqrt(tetris) * 2);
 	while (!(res = ft_fillmap(ttab, ft_createmap(size), size, tetris)))
 		size++;
@@ -41,13 +41,15 @@ int		main(int ac, char **av)
 
 	tetris = 0;
 	if (ac != 2)
-		ft_putstr("./fillit target_file\n");
+		ft_putstr("usage: ./fillit target_file\n");
 	else if (!(read = ft_readfile(av[1])))
 		ft_putstr(RED"error\n"EOC);
 	else if (!(tetris = ft_checkfile(read)))
-	   ft_putstr(RED"error\n"EOC);	
+		ft_putstr(RED"error\n"EOC);
 	else
+	{
 		if (ft_fillit(av[1], tetris))
 			return (1);
+	}
 	return (0);
 }
