@@ -6,7 +6,7 @@
 #    By: femaury <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 20:03:09 by femaury           #+#    #+#              #
-#    Updated: 2018/04/26 14:58:07 by femaury          ###   ########.fr        #
+#    Updated: 2018/04/26 18:18:28 by femaury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,21 +20,27 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+LIBFT = libft/libft.a
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, clean, fclean, re 
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ libft/libft.a
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)
+
+$(LIBFT):
+	$(MAKE) -C ./libft/
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) $(CFLAGS) -o $@ -c $^
 
 clean:
 	$(RM) $(OBJ)
-
+	$(MAKE) -C ./libft/ clean
+	
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C ./libft/ fclean
 
 re: fclean all
