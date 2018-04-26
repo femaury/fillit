@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 15:07:51 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/25 13:06:13 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/26 17:06:03 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 char			*ft_itoa(int n);
 char			*ft_itoa_base(int n, int base);
 int				ft_atoi(const char *str);
+int				ft_sqrt(int nb);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
@@ -45,6 +46,8 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 
 size_t			ft_strlen(const char *s);
+size_t			ft_strtablen(char **s);
+size_t			ft_strtablen_at(char **s, int i, int j);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 char			*ft_strdup(const char *s1);
 char			*ft_strcpy(char *dst, const char *src);

@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_readfile.c                                      :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/24 12:32:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/26 14:52:04 by femaury          ###   ########.fr       */
+/*   Created: 2018/04/26 17:05:10 by femaury           #+#    #+#             */
+/*   Updated: 2018/04/26 17:09:19 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "fillit.h"
+#include "libft.h"
 
-char	**ft_readfile(char *s)
+int		ft_sqrt(int nb)
 {
 	int		i;
-	int		fd;
-	char	**buf;
 
-	i = 0;
-	if (!(buf = (char **)malloc(sizeof(char *) * 27)))
-		return (NULL);
-	while (i < 27)
-		if (!(buf[i++] = (char *)ft_memalloc(22)))
-			return (NULL);
-	if ((fd = open(s, O_RDONLY)) == -1)
-		return (NULL);
-	i = 0;
-	while (read(fd, buf[i], 21) > 0)
+	i = 10;
+	while (i * i < nb)
+		i += 10;
+	i -= 10;
+	while (i * i < nb)
 		i++;
-	if (buf[25][20] || !buf[0][19])
-		return (NULL);
-	close(fd);
-	return (buf);
+	return (i * i == nb) ? i : --i;
 }

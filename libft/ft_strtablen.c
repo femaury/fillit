@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_readfile.c                                      :+:      :+:    :+:   */
+/*   ft_strtablen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/24 12:32:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/26 14:52:04 by femaury          ###   ########.fr       */
+/*   Created: 2018/04/26 13:46:04 by femaury           #+#    #+#             */
+/*   Updated: 2018/04/26 14:03:40 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "fillit.h"
+#include "libft.h"
 
-char	**ft_readfile(char *s)
+size_t	ft_strtablen(char **s)
 {
 	int		i;
-	int		fd;
-	char	**buf;
+	int		j;
+	size_t	x;
 
 	i = 0;
-	if (!(buf = (char **)malloc(sizeof(char *) * 27)))
-		return (NULL);
-	while (i < 27)
-		if (!(buf[i++] = (char *)ft_memalloc(22)))
-			return (NULL);
-	if ((fd = open(s, O_RDONLY)) == -1)
-		return (NULL);
-	i = 0;
-	while (read(fd, buf[i], 21) > 0)
+	x = 0;
+	while (s[i][0])
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			j++;
+			x++;
+		}
 		i++;
-	if (buf[25][20] || !buf[0][19])
-		return (NULL);
-	close(fd);
-	return (buf);
+	}
+	return (x);
 }
