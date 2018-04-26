@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:32:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/26 14:52:04 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/26 19:28:46 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ char	**ft_readfile(char *s)
 	i = 0;
 	while (read(fd, buf[i], 21) > 0)
 		i++;
-	if (buf[25][20] || !buf[0][19])
+	if (i == 0)
+		return (NULL);
+	if (buf[i - 1][20] || !buf[0][19])
 		return (NULL);
 	close(fd);
 	return (buf);
