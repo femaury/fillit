@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:30:22 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/17 18:34:03 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/30 16:44:52 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	ft_putendl(char const *s)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (s[i])
-		ft_putchar(s[i++]);
+	ft_putstr(s);
 	ft_putchar('\n');
 }

@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 15:07:51 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/26 17:06:03 by femaury          ###   ########.fr       */
+/*   Updated: 2018/04/30 16:44:31 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
-void			ft_putstrnl(char const *s);
 void			ft_putendl(char const *s);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);
