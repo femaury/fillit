@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 18:35:44 by femaury           #+#    #+#             */
-/*   Updated: 2018/05/02 13:29:19 by femaury          ###   ########.fr       */
+/*   Updated: 2018/05/02 14:02:53 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void	ft_check_sametetri(t_tetris ttab[], int i[5])
 	int		x;
 	int		z;
 
-	x = 0;
 	z = 0;
 	while (z < i[0] + 1)
 	{
