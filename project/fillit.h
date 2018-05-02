@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:55:03 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/26 14:58:53 by femaury          ###   ########.fr       */
+/*   Updated: 2018/05/02 12:58:47 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct	s_tetris
 {
 	int		posx[3];
 	int		posy[3];
+	int		startx;
+	int		starty;
 }				t_tetris;
 
 t_tetris		*ft_createttab(char **s, int nb);

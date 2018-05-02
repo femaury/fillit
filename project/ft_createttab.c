@@ -6,7 +6,7 @@
 /*   By: badhont <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:20:04 by badhont           #+#    #+#             */
-/*   Updated: 2018/04/26 19:14:09 by femaury          ###   ########.fr       */
+/*   Updated: 2018/05/02 12:59:38 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void		ft_fillttab(char **s, t_tetris *ttab, int i)
 			j++;
 		ttab[i].posy[spot] = (j / 5) - (tag / 5);
 		ttab[i].posx[spot] = (j % 5) - (tag % 5);
+		ttab[i].starty = 0;
+		ttab[i].startx = 0;
 		spot++;
 		j++;
 		if (spot == 3)

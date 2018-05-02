@@ -6,39 +6,39 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 18:35:44 by femaury           #+#    #+#             */
-/*   Updated: 2018/05/02 12:45:53 by femaury          ###   ########.fr       */
+/*   Updated: 2018/05/02 13:29:19 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "fillit.h"
 
-static char	**ft_delprev(t_tetris ttab[], char **map, int i[56], size_t size)
+static char	**ft_delprev(t_tetris ttab[], char **map, int i[5], size_t size)
 {
 	int		x;
 
 	x = 0;
 	i[0]--;
-	map[i[4 + i[0]]][i[30 + i[0]]] = '.';
+	map[ttab[i[0]].starty][ttab[i[0]].startx] = '.';
 	while (x < 3)
 	{
-		map[i[4 + i[0]] + ttab[i[0]].posy[x]][i[30 + i[0]] +
+		map[ttab[i[0]].starty + ttab[i[0]].posy[x]][ttab[i[0]].startx +
 			ttab[i[0]].posx[x]] = '.';
 		x++;
 	}
 	i[0]--;
-	i[1] = (i[0] > -1 ? i[4 + i[0] + 1] : i[4]);
-	i[2] = (i[0] > -1 ? i[30 + i[0] + 1] : i[30]) + 1;
+	i[1] = (i[0] > -1 ? ttab[i[0] + 1].starty : ttab[0].starty);
+	i[2] = (i[0] > -1 ? ttab[i[0] + 1].startx : ttab[0].startx) + 1;
 	if (i[2] >= (int)size)
 	{
 		i[2] = 0;
 		i[1]++;
 	}
-	i[55]--;
+	i[4]--;
 	return (map);
 }
 
-static char	**ft_fillmapext(t_tetris ttab[], char **map, int i[56], size_t size)
+static char	**ft_fillmapext(t_tetris ttab[], char **map, int i[5], size_t size)
 {
 	i[3] = 0;
 	while (map[i[1]][i[2]] != '.' && map[i[1]][i[2]])
@@ -49,9 +49,9 @@ static char	**ft_fillmapext(t_tetris ttab[], char **map, int i[56], size_t size)
 			i[3]++;
 		if (i[3] == 3)
 		{
-			i[55]++;
-			i[4 + i[0]] = i[1];
-			i[30 + i[0]] = i[2];
+			i[4]++;
+			ttab[i[0]].starty = i[1];
+			ttab[i[0]].startx = i[2];
 			map[i[1]][i[2]] = 'A' + i[0];
 			i[3] = -1;
 			while (++i[3] < 3)
@@ -66,7 +66,7 @@ static char	**ft_fillmapext(t_tetris ttab[], char **map, int i[56], size_t size)
 	return (map);
 }
 
-static void	ft_check_sametetri(t_tetris ttab[], int i[56])
+static void	ft_check_sametetri(t_tetris ttab[], int i[5])
 {
 	int		x;
 	int		z;
@@ -85,8 +85,8 @@ static void	ft_check_sametetri(t_tetris ttab[], int i[56])
 		}
 		if (x == 3)
 		{
-			i[1] = i[4 + z];
-			i[2] = i[30 + z];
+			i[1] = ttab[z].starty;
+			i[2] = ttab[z].startx;
 			return ;
 		}
 		z++;
@@ -97,11 +97,11 @@ static void	ft_check_sametetri(t_tetris ttab[], int i[56])
 
 char		**ft_fillmap(t_tetris ttab[], char **map, size_t size, int nb)
 {
-	int		i[56];
+	int		i[5];
 	int		j;
 
 	j = 0;
-	while (j < 56)
+	while (j < 5)
 		i[j++] = 0;
 	while (i[0] < nb)
 	{
@@ -114,9 +114,9 @@ char		**ft_fillmap(t_tetris ttab[], char **map, size_t size, int nb)
 				break ;
 			}
 		}
-		if (i[3] != 3 && i[55])
+		if (i[3] != 3 && i[4])
 			map = ft_delprev(ttab, map, i, size);
 		i[0]++;
 	}
-	return (i[55] ? (map) : (NULL));
+	return (i[4] ? (map) : (NULL));
 }
