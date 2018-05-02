@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 18:35:44 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/26 15:25:43 by femaury          ###   ########.fr       */
+/*   Updated: 2018/05/02 12:45:53 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,35 @@ static char	**ft_fillmapext(t_tetris ttab[], char **map, int i[56], size_t size)
 	return (map);
 }
 
+static void	ft_check_sametetri(t_tetris ttab[], int i[56])
+{
+	int		x;
+	int		z;
+
+	x = 0;
+	z = 0;
+	while (z < i[0] + 1)
+	{
+		x = 0;
+		while (x < 3)
+		{
+			if (ttab[z].posy[x] != ttab[i[0] + 1].posy[x] ||
+					ttab[z].posx[x] != ttab[i[0] + 1].posx[x])
+				break ;
+			x++;
+		}
+		if (x == 3)
+		{
+			i[1] = i[4 + z];
+			i[2] = i[30 + z];
+			return ;
+		}
+		z++;
+	}
+	i[1] = 0;
+	i[2] = 0;
+}
+
 char		**ft_fillmap(t_tetris ttab[], char **map, size_t size, int nb)
 {
 	int		i[56];
@@ -81,8 +110,7 @@ char		**ft_fillmap(t_tetris ttab[], char **map, size_t size, int nb)
 			map = ft_fillmapext(ttab, map, i, size);
 			if (i[3] == 3)
 			{
-				i[1] = 0;
-				i[2] = 0;
+				ft_check_sametetri(ttab, i);
 				break ;
 			}
 		}
