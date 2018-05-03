@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 18:35:44 by femaury           #+#    #+#             */
-/*   Updated: 2018/05/02 14:02:53 by femaury          ###   ########.fr       */
+/*   Updated: 2018/05/03 17:36:34 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static char	**ft_delprev(t_tetris ttab[], char **map, int i[5], size_t size)
 		x++;
 	}
 	i[0]--;
-	i[1] = (i[0] > -1 ? ttab[i[0] + 1].starty : ttab[0].starty);
-	i[2] = (i[0] > -1 ? ttab[i[0] + 1].startx : ttab[0].startx) + 1;
+	i[1] = ttab[i[0] + 1].starty;
+	i[2] = ttab[i[0] + 1].startx + 1;
 	if (i[2] >= (int)size)
 	{
 		i[2] = 0;
